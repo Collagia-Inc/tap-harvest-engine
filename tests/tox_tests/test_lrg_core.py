@@ -1,8 +1,11 @@
+from uuid import uuid4
+
 from singer_sdk.testing import get_standard_tap_tests
 from tap_harvest_engine.tap import TapHarvestEngine
 
 SAMPLE_CONFIG = {
-    "api_url": "http://localhost"
+    "api_url": "http://localhost",
+    "image_object_attribute_id": str(uuid4())
 }
 
 
