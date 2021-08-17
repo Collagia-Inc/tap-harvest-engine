@@ -1,11 +1,13 @@
 import json
+from uuid import uuid4
 
 import responses
 from singer_sdk.testing import get_standard_tap_tests
 from tap_harvest_engine.tap import TapHarvestEngine
 
 SAMPLE_CONFIG = {
-    "api_url": "http://localhost"
+    "api_url": "http://localhost",
+    "image_object_attribute_id": str(uuid4())
 }
 
 
@@ -17,9 +19,10 @@ def test_standard_tap_tests(mocked_responses):
         config=SAMPLE_CONFIG
     )
     url = SAMPLE_CONFIG.get("api_url")
+    image_object_attribute_id = SAMPLE_CONFIG.get("image_object_attribute_id")
     mocked_responses.add(
         responses.GET,
-        f"{url}/attributes",
+        f"{url}/image-object-attributes/{image_object_attribute_id}",
         body=json.dumps(
             {
                 "results": [{}]

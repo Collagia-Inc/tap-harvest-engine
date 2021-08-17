@@ -8,24 +8,25 @@ Built with the Meltano [SDK](https://gitlab.com/meltano/singer-sdk) for Singer T
 
 This repo has the following components:
 
-* Source code
-* Tests
-* Misc configuration files (in the root directory)
+- Source code
+- Tests
+- Misc configuration files (in the root directory)
 
 #### Dependencies
 
 This repo was built with python 3.7.9 on Mac OS 10.15.7
 It uses `tox` and `poetry` [docs](https://python-poetry.org/).
 
-* pip install tox
-* pip install poetry
-* poetry install
-
+- pip install tox
+- pip install poetry
+- poetry install
 
 ## Configuration
+
 ```
 {
-  "api_url": "http://localhost"
+  "api_url": "http://localhost",
+  "image_object_attribute_id": <UUID>
 }
 ```
 
@@ -42,14 +43,13 @@ tap-harvest-engine --about
 
 Currently there is no authentication and authorization required by the HE.
 
-
 ## Source code
 
 Source code is stored in the `/tap_harvest_engine` folder
 
-* client class - parent class for implementing HE specific client logic including: pagenation, filtering, url parameters, response parsing, etc.
-* streams classes - contains all stream implementations. This includes: name, schema, replication keys, url, etc.
-* tap class - class defines the requiremented singer configs and the streams supported by the discover process.
+- client class - parent class for implementing HE specific client logic including: pagenation, filtering, url parameters, response parsing, etc.
+- streams classes - contains all stream implementations. This includes: name, schema, replication keys, url, etc.
+- tap class - class defines the requiremented singer configs and the streams supported by the discover process.
 
 ## Usage
 
@@ -76,8 +76,8 @@ actually connecting like the large tests do.
 
 Large tests are not run using `tox` and currently reference `http://localhost`.
 
-* Assert Core (Large)
-* Assert Core (Medium)
+- Assert Core (Large)
+- Assert Core (Medium)
 
 ### Linting and code style
 
@@ -91,21 +91,21 @@ This repo uses [pytest](https://docs.pytest.org/en/latest/getting-started.html) 
 
 Tests are grouped by "size" as defined by google. Here is an interesting [blog](https://mike-bland.com/2011/11/01/small-medium-large.html) and another [blog](https://testing.googleblog.com/2010/12/test-sizes.html) about test sizes. Medium tests are prefixed with `test_med`. Large tests are prefixed with `test_lrg`.
 
-***Note: Explicit small tests are not needed in languages like python that compile at runtime. Tox performs them at the time medium tests are ran***
+**_Note: Explicit small tests are not needed in languages like python that compile at runtime. Tox performs them at the time medium tests are ran_**
 
 #### Brief Summary
 
-* small tests: Linting, code style, code compilation checks
-* medium tests: Business logic that can run on localhost
-* large tests: Assert the connection between components and systems
-* x-large tests: Assert the end to end interaction of an entire ecosystem ususally from the perspective of a customer
+- small tests: Linting, code style, code compilation checks
+- medium tests: Business logic that can run on localhost
+- large tests: Assert the connection between components and systems
+- x-large tests: Assert the end to end interaction of an entire ecosystem ususally from the perspective of a customer
 
 #### Execution
 
-* Execute the command `tox` from root of the repo directory to assert all tests.
-* Execute the command `tox tests/tox_tests/test_med*` from root of the repo directory to assert just medium tests.
-* Execute the command `tox tests/tox_tests/test_lrg*` from root of the repo directory to assert just large tests.
-* Execute the command `tox tests/tox_tests/[file name]` from root of the repo directory to assert just a single test
+- Execute the command `tox` from root of the repo directory to assert all tests.
+- Execute the command `tox tests/tox_tests/test_med*` from root of the repo directory to assert just medium tests.
+- Execute the command `tox tests/tox_tests/test_lrg*` from root of the repo directory to assert just large tests.
+- Execute the command `tox tests/tox_tests/[file name]` from root of the repo directory to assert just a single test
 
 #### Code Coverage
 
@@ -115,12 +115,11 @@ This repo uses [codecoverage](https://coverage.readthedocs.io/en/v4.5.x/) to fac
 
 ## Misc configuration files
 
-* .gitignore - a fine start to common things that should be ignored in a python repo
-* tox.ini - config file for Tox
-* poetry.lock - [poetry's](https://python-poetry.org/docs/basic-usage/#installing-with-poetrylock) locked dependencies and verisons
-* pyproject.toml - [poetry's](https://python-poetry.org/docs/basic-usage/#installing-with-poetrylock) dependecy definitions
-* .secrets - a path for storing local uncommited singer config files to ensure they are not checked into git repos.
-
+- .gitignore - a fine start to common things that should be ignored in a python repo
+- tox.ini - config file for Tox
+- poetry.lock - [poetry's](https://python-poetry.org/docs/basic-usage/#installing-with-poetrylock) locked dependencies and verisons
+- pyproject.toml - [poetry's](https://python-poetry.org/docs/basic-usage/#installing-with-poetrylock) dependecy definitions
+- .secrets - a path for storing local uncommited singer config files to ensure they are not checked into git repos.
 
 ### Testing with [Meltano](https://www.meltano.com)
 
@@ -151,5 +150,5 @@ meltano elt tap-harvest-engine target-jsonl
 
 ### SDK Dev Guide
 
-See the [dev guide](https://gitlab.com/meltano/singer-sdk/-/blob/main/docs/dev_guide.md) for more instructions on how to use the SDK to 
+See the [dev guide](https://gitlab.com/meltano/singer-sdk/-/blob/main/docs/dev_guide.md) for more instructions on how to use the SDK to
 develop your own taps and targets.
