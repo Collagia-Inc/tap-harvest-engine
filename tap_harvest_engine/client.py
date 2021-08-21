@@ -17,5 +17,4 @@ class HarvestEngineStream(RESTStream):
     def parse_response(self, response: requests.Response) -> Iterable[dict]:
         """Parse the response and return an iterator of result rows."""
         resp_json = response.json()
-        for row in resp_json.get("results"):
-            yield row
+        yield resp_json
