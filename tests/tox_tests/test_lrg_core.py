@@ -4,8 +4,10 @@ from singer_sdk.testing import get_standard_tap_tests
 from tap_harvest_engine.tap import TapHarvestEngine
 
 SAMPLE_CONFIG = {
-    "api_url": "http://localhost",
-    "image_object_attribute_id": str(uuid4())
+    "api_url": "http://localhost:8000",
+    "p_connection_pk": -1,
+    "meltano_state_id": 'harvest-engine-target-json',
+    "start_date": '2018-12-20T18:49:51'
 }
 
 

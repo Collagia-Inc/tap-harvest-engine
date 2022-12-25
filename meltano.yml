@@ -3,18 +3,24 @@ send_anonymous_usage_stats: true
 project_id: tap-harvest-engine
 plugins:
   extractors:
-  - name: tap-harvest-engine
-    namespace: tap_harvest_engine
-    executable: ./tap-harvest-engine.sh
-    capabilities:
-    - state
-    - catalog
-    - discover
-    config:
-      api_url: 'http://localhost'
-    settings:
-    - api_url: api_url
+    - name: tap-harvest-engine
+      namespace: tap_harvest_engine
+      pip_url: -e .
+      capabilities:
+        - state
+        - catalog
+        - discover
+      config:
+        api_url: 'http://localhost:8000'
+        p_connection_pk: -1
+        meltano_state_id: 'harvest-engine-target-json'
+        start_date: '2018-12-20T18:49:51.090637'
+      settings:
+        - name: api_url
+          env: TAP_HOST
+        - name: p_connection_pk
+          env: CONNECTION_PK
   loaders:
-  - name: target-jsonl
-    variant: andyh1203
-    pip_url: target-jsonl
+    - name: target-jsonl
+      variant: andyh1203
+      pip_url: target-jsonl

@@ -26,7 +26,7 @@ It uses `tox` and `poetry` [docs](https://python-poetry.org/).
 ```
 {
   "api_url": "http://localhost",
-  "image_object_attribute_id": <UUID>
+  "p_connection_pk": <int>
 }
 ```
 
@@ -138,6 +138,12 @@ pipx install meltano
 cd tap-harvest-engine
 meltano install
 ```
+
+Add env vars
+```
+MELTANO_STATE_ID=harvest-engine-target-json
+```
+
 
 Now you can test and orchestrate using Meltano:
 
