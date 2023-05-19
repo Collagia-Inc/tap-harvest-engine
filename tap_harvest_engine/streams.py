@@ -23,6 +23,10 @@ class ImageObjectAttributesStream(HarvestEngineStream):
         th.Property("attribute_status_code", th.StringType, required=True),
         th.Property("last_job_execution_id", th.IntegerType, required=False),
         th.Property("value", th.StringType, required=True),
+        th.Property("key", th.StringType, required=True),
+        th.Property("item_identifier", th.StringType, required=True),
+        th.Property("harvest_job_fk", th.StringType, required=True),
+        th.Property("collection_name", th.StringType, required=True),
         th.Property("data_type", th.StringType, required=True),
         th.Property("execution_end_ts", th.DateTimeType, required=True)
     ).to_dict()
