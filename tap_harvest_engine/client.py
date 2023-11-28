@@ -30,8 +30,9 @@ class HarvestEngineStream(RESTStream):
         
         datetime_format_string = "%Y-%m-%dT%H:%M:%S.%f"
         
+        starting_date = self.get_starting_replication_key_value(context)
 
-        replication_key_value = self.get_starting_replication_key_value({}).strftime(datetime_format_string)
+        replication_key_value = datetime.strftime(starting_date, datetime_format_string)
 
         return [("timestamp", replication_key_value)]
 
