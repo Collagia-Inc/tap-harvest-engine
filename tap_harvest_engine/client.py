@@ -3,7 +3,7 @@
 from typing import Iterable, Optional, Any, Dict
 import logging
 import requests
-import datetime
+from datetime import datetime
 from singer_sdk.streams import RESTStream
 
 
@@ -32,7 +32,7 @@ class HarvestEngineStream(RESTStream):
         
         starting_date = self.get_starting_replication_key_value(context)
 
-        replication_key_value = datetime.strftime(starting_date, datetime_format_string)
+        replication_key_value = datetime.strptime(starting_date, datetime_format_string)
 
         return [("timestamp", replication_key_value)]
 
